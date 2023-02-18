@@ -123,14 +123,20 @@ a {
         }
     }
 
+    var splashScreen;
+    function onclickSplash() {
+        splashScreen.style.opacity = 0;
+        setTimeout(() => {
+            splashScreen.classList.add('hidden')
+        }, 1200)
+    }
     function onload() {
-        var splashScreen = document.querySelector('.splash');
-        splashScreen.addEventListener('click', () => {
-            splashScreen.style.opacity = 0;
-            setTimeout(() => {
-                splashScreen.classList.add('hidden')
-            }, 2000)
-        })
+        splashScreen = document.querySelector('.splash');
+
+        splashScreen.addEventListener('click', onclickSplash);
+        setTimeout(() => {
+            onclickSplash();
+        }, 1500)
         toggle(null, 'clubes')
     }
 </script>
