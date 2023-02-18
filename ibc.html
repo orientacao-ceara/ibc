@@ -1,41 +1,103 @@
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-    body {
-        background-color: #87bdd8;
-        color: black;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-    }
+body {
+    background-color: #87bdd8;
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 
-    .w3-ul {
-        background-color: #87bdd8;
-        padding: 0px 0px;
-    }
-    .w3-ul li {
-        padding-left: 0px;
-    }
-    .inner-topic li {
-        padding-left: 80px;
-        background-color: #b7d7e8;
-    }
+.titulo {
+    font-size: 20px;
+    font-weight: bold;
+}
 
-    a {
-        color: #1e9cdb;
-        text-decoration: none;
-    }
+.w3-ul {
+    background-color: #87bdd8;
+    padding: 8px 0px;
 
-    .topic {
-    }
+}
 
-    .clube {
-        /* margin-left: 20px; */
-    }
+.w3-ul li {
+    padding-left: 0px;
+    border-bottom: 2px solid #b7d7e8;
+}
+
+.inner-topic li {
+    padding-left: 30px;
+    background-color: #b7d7e8;
+    border-bottom: 2px solid #87bdd8;
+}
+
+i {
+    width: 30px;
+    color: #3B5998;
+}
+
+a:hover {
+    color: #3B5998;
+}
+
+a {
+    color: #198dc7;
+    text-decoration: none;
+}
+
+.fa {
+    padding: 0px;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+}
+.container {
+    background-color: rgba(100, 201, 154);
+    padding: 20px;
+    margin: 50px auto;
+    border: 2px solid white;
+    display: grid;
+    width: 70%;
+}
+
+.splash {
+    cursor: pointer;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    height: 100%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    background-color: #87bdd8;
+    transition: all ease-in-out 1200ms;
+}
+
+.splash-image {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hidden {
+    transition: 0.5s;
+    display: none;
+}
+
+.splash-header {
+    height: 90%;
+    color: white;
+    font-family: consolas;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 </style>
 <script>
-    function toggle(topic) {
+    function toggle(elem, topic) {
         var el;
-        let lista = document.getElementsByClassName('inner-topic');
+        var lista = document.getElementsByClassName('inner-topic');
         for (let i = 0; i < lista.length; i++) {
             el = lista[i];
             if (el.id == topic) {
@@ -48,126 +110,266 @@
                 el.style.display = 'none';
             }
         }
+        lista = document.getElementsByClassName('topic');
+        for (let i = 0; i < lista.length; i++) {
+            el = lista[i];
+            el.style.fontWeight = 'normal';
+        }
+        if (elem) {
+            elem.currentTarget.style.fontWeight = '900';
+        }
+    }
+
+    function onload() {
+        var splashScreen = document.querySelector('.splash');
+        splashScreen.addEventListener('click', () => {
+            splashScreen.style.opacity = 0;
+            setTimeout(() => {
+                splashScreen.classList.add('hidden')
+            }, 2000)
+        })
+        toggle(null, 'clubes')
     }
 </script>
 
-<body onload="toggle('')">
+<body onload="onload()">
+    <div class="splash">
+        <img class="splash-image" src="img/ibc-abertura.png">
+    </div>
     <div class="w3-container">
+        <span class="titulo">Pista de Orientação - IBC</span>
         <ul class="w3-ul">
             <li>
-                <span class="topic" onclick="toggle('pista')">O que é uma Pista de Orientação?</span>
+                <span class="topic" onclick="toggle(event, 'pista')">O que é uma Pista de Orientação?</span>
                 <ul class="w3-ul inner-topic" id="pista" name="pista">
-                    <li>Pista de Orientação é o local preparado para se praticar o esporte Orientação, que é uma corrida
-                        que utiliza mapa e bússola.</li>
-                    <li>Na Pista de Orientação, pontos de controle são montados em um terreno e representados em um
-                        mapa.</li>
-                    <li>O objetivo é visitar um conjunto desses pontos em uma sequência definida no mapa.</li>
-                    <li>Esta sequência de pontos é chamada de percurso.</li>
-                    <li>O percurso inicia no ponto de partida, indicado por um triângulo no mapa, e finaliza no ponto de
-                        chegada, sinalizado com um círculo duplo.</li>
-                    <li>Em uma Pista de Orientação podem existir percursos diferentes, cada um com sua distância total e
-                        seu nível de dificuldade,
-                        que são impressos em mapas distintos.</li>
+                    <li>
+                        Pista de Orientação é o local preparado para se praticar o esporte Orientação, uma corrida que
+                        utiliza mapa e bússola.
+                    </li>
+                    <li>
+                        Na Pista de Orientação, pontos de controle são montados no terreno e representados em um mapa.
+                    </li>
+                    <li>
+                        O objetivo é visitar um conjunto desses pontos em sequência definida no mapa. Esta sequência de
+                        pontos é chamada de percurso.
+                    </li>
+                    <li>
+                        O percurso inicia no ponto de partida, sinalizado por um triângulo no mapa, e finaliza no ponto
+                        de chegada, sinalizado com um círculo duplo.
+                    </li>
+                    <li>
+                        Em uma Pista de Orientação podem existir percursos diferentes, cada um com sua distância total e
+                        seu nível de dificuldade. Em um mapa é impresso um único percurso.
+                    </li>
                 </ul>
             </li>
             <li>
-                <span class="topic" onclick="toggle('uso')">Como eu posso utilizar esta Pista de Orientação?</span>
+                <span class="topic" onclick="toggle(event, 'uso')">Como eu posso utilizar esta Pista de
+                    Orientação?</span>
                 <ul class="w3-ul inner-topic" id="uso" name="uso">
-                    <li>Você pode obter um mapa na Igreja Batista Central, imprimir um ou visualizá-lo em seu celular.
+                    <li>
+                        Você pode obter um mapa na Igreja Batista Central, imprimir um ou visualizá-lo em seu celular.
                     </li>
-                    <li>Se você está no campus da IBC, informe-se onde adquirir seu mapa.</li>
-                    <li>Se tiver acesso a uma impressora, basta baixar o <a href="doc/mapa-ibc.pdf">mapa</a> e imprimir.
+                    <li>
+                        Se você está no campus da IBC, informe-se onde adquirir seu mapa.
                     </li>
-                    <li>A opção de baixar o <a href="doc/mapa-ibc.pdf">mapa</a> e usá-lo em seu celular é possível, mas
-                        você perde a experiência em relação a noção
-                        de distância e o alinhamento do mapa em relação ao terreno, que são técnicas importantes para a
-                        Orientação.</li>
-                    <li>Para iniciar o percurso, dirija-se ao ponto de partida, que corresponde ao ponto localizado ao
-                        lado do balanço, próximo ao refeitório.</li>
-                    <li>A partir daí, você deve encontrar os pontos do percurso na ordem indicada no mapa até o último
-                        ponto, marcado no mapa com um círculo duplo.</li>
+                    <li>
+                        Se tiver acesso a uma impressora, basta baixar o <a target="_blank"
+                            href="doc/mapa-ibc.pdf">mapa</a> e imprimir.
+                    </li>
+                    <li>
+                        A opção de baixar o <a target="_blank" href="doc/mapa-ibc.pdf">mapa</a> e usá-lo em seu celular
+                        é possível, mas você
+                        perde a experiência em relação a noção de distância e o alinhamento do mapa em relação ao
+                        terreno, que são técnicas
+                        importantes para a Orientação.
+                    </li>
+                    <li>
+                        Para iniciar o percurso, dirija-se ao ponto de partida, que corresponde ao ponto localizado ao
+                        lado do balanço,
+                        próximo ao refeitório.
+                    </li>
+                    <li>
+                        A partir daí, você deve encontrar os pontos do percurso na ordem indicada no mapa até o último
+                        ponto, marcado no
+                        mapa com um círculo duplo.
+                    </li>
                 </ul>
             </li>
             <li>
-                <span class="topic" onclick="toggle('registro')">Eu consigo registrar a passagem pelos pontos de controle? E consigo registrar meu
+                <span class="topic" onclick="toggle(event, 'registro')">Eu consigo registrar a passagem pelos pontos de
+                    controle? E consigo registrar meu
                     tempo no percurso?</span>
                 <ul class="w3-ul inner-topic" id="registro" name="registro">
-                    <li>Nas placa de identificação desta pista há um par de QR codes na parte superior. Cada um armazena
-                        o número ou nome do ponto de controle.</li>
-                    <li>Se você ler estes códigos com um aplicativo de QR code, você poderá acessar o histórico e
-                        verificar se realizou a sequência correta do percurso.</li>
-                    <li>Se você quer registrar seu tempo no percurso, há um aplicativo em desenvolvimento. Um tutorial 
-                        está sendo produzido e será disponibilizado aqui mesmo.</li>
+                    <li>
+                        Nas placa de identificação desta pista há dois QR codes na parte superior. Cada um armazena o
+                        número ou nome do ponto de controle.
+                    </li>
+                    <li>
+                        Se você ler estes códigos com um aplicativo de QR code, poderá acessar o histórico e verificar
+                        se realizou a sequência correta do percurso.
+                    </li>
+                    <li>
+                        Se você quer registrar seu tempo no percurso, há um aplicativo em desenvolvimento. Um tutorial
+                        está sendo produzido e será disponibilizado aqui em breve.
+                    </li>
                 </ul>
             </li>
             <li>
-                <span class="topic" onclick="toggle('historico')">O que é Orientação</span>
+                <span class="topic" onclick="toggle(event, 'idade')">Há um limite de idade para praticar Orientação?</span>
+                <ul class="w3-ul inner-topic" id="idade" name="idade">
+                    <li>
+                        A Orientação é um esporte para todas as idades. As crianças pequenas podem participar acompanhadas.
+                        Por volta de 10 anos a criança já pode ser capaz de realizar pequenos percursos sozinha. E contamos 
+                        também com atletas com mais de 80 anos, que recebem percursos com menor exigência física.
+                    </li>
+                    <li>
+                        Os atletas são distribuídos em categorias de acordo com seu gênero, idade e experiência. Os percursos
+                        são traçados nos níveis Novato, Bravo, Alfa e Elite.
+                    </li>
+                    <li>
+                        A Elite é a categoria de competição mais alta, com foco em competições nacionais e internacionais, 
+                        bastante exigentes em relação às capacidades físicas e técnicas.
+                    </li>
+                    <li>
+                        As outras categorias envolvem atletas em desenvolvimento, amantes da natureza, atletas amadores em
+                        busca de preparo físico e também aqueles que curtem competições saudáveis entre amigos.
+                    </li>
+                    <li>
+                        É comum ver pais e filho, avôs e netos participando de uma mesma competição, cada um disputando em
+                        sua categoria. Daí nasceu o jargão que a <b>Orientação é o esporte da família</b>.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <span class="topic" onclick="toggle(event, 'historico')">Pode me informar mais sobre o esporte
+                    Orientação?</span>
                 <ul class="w3-ul inner-topic" id="historico" name="historico">
-                    <li>A Orientação é um esporte da natureza. É uma corrida individual em terrenos diversos, como campos,
-                        bosques e áreas urbanas, onde o atleta compete com outros de mesma experiência e faixa etária utilizando 
-                        um mapa e uma bússola.</li>
-                    <li>Sua origem é sueca, onde surgiu por volta de 1918. Chegou ao Brasil por volta de 1971 por meio de organizações militares.</li>
-                    <li>O esporte é regulamentado pela Federação Internacional de Orientação (<a href="http://https://orienteering.sport/">IOF</a>) e é reconhecido pelo Comitê Olímpico Internacional (COI).</li>
-                    <li>A Confederação Brasileira de Orientação (<a href="http://www.cbo.esp.br">CBO</a>) conta com mais de 100 clubes em 15 federações.
-                        A Federação Cearense de Orientação (<a href="http://www.fecori.org.br">FECORI</a>) conta com 6 clubes e mais de 800 filiados.</li>
-                    <li>Na competição, há um horário definido para a partida do atleta, que só poderá ver o mapa após
-                        autorizado. O tempo de competição começa neste instante.</li>
-                    <li>Na partida, o atleta é direcionado para o prisma identificado com um triângulo. A localização dele
-                        corresponde ao ponto marcado com um triângulo no mapa. É como se o mapa dissesse: você está aqui.</li>
-                    <li>A partir do prisma do triângulo, o atleta tem que ler o mapa, identificar os elementos naturais e
-                        construídos, e definir a estratégia para chegar próximo ponto.</li>
-                    <li>O atleta deve visitar os pontos na ordem apresentada e conferir se o número do controle junto ao
-                        prisma corresponde ao número apresentado na sinalética.</li>
-                    <li>Após o último ponto numerado há o ponto da chegada. O tempo de competição finaliza aqui.</li>
-                    <li>Para definir o vencedor, os tempos de competição são comparado entre os atletas de mesma categoria,
-                        que realizaram o mesmo percurso.</li>
-                    <li>Nas competições oficiais há um equipamento individual que registra o tempo e a ordem de passagem do atleta nos pontos de controle.</li>
+                    <li>
+                        A Orientação é um esporte da natureza. É uma corrida individual em terrenos diversos, como campos, bosques e áreas
+                        urbanas, onde o atleta compete com outros de mesma experiência e faixa etária utilizando um mapa e uma bússola.
+                    </li>
+                    <li>
+                        Sua origem é sueca, onde surgiu por volta de 1918. Chegou ao Brasil por volta de 1971 por meio de organizações
+                        militares.
+                    </li>
+                    <li>
+                        O esporte é regulamentado pela Federação Internacional de Orientação
+                        (<a target="_blank" href="http://orienteering.sport/">IOF</a>)
+                        e é reconhecido pelo Comitê Olímpico Internacional (COI).
+                    </li>
+                    <li>
+                        A Confederação Brasileira de Orientação
+                        (<a target="_blank" href="http://www.cbo.esp.br">CBO</a>)
+                        conta com mais de 100 clubes em 15 federações. A Federação Cearense de Orientação
+                        (<a target="_blank" href="http://www.fecori.org.br">FECORI</a>)
+                        conta com 6 clubes e mais de 800 filiados.
+                    </li>
+                    <li>
+                        Na competição, há um horário definido para a partida do atleta, que só poderá ver o mapa após autorizado. O tempo de
+                        competição começa neste instante.
+                    </li>
+                    <li>
+                        Na partida, o atleta é direcionado para o prisma identificado com um triângulo. A localização dele corresponde ao
+                        ponto marcado com um triângulo no mapa. É como se o mapa dissesse: você está aqui.
+                    </li>
+                    <li>
+                        A partir do prisma do triângulo, o atleta tem que ler o mapa, identificar os elementos naturais e construídos, e
+                        definir a estratégia para chegar próximo ponto.
+                    </li>
+                    <li>
+                        O atleta deve visitar os pontos na ordem apresentada e conferir se o número do controle junto ao prisma corresponde
+                        ao número apresentado no mapa.
+                    </li>
+                    <li>
+                        Após o último ponto numerado há o ponto da chegada. O tempo de competição finaliza aqui.
+                    </li>
+                    <li>
+                        Para definir o vencedor, os tempos de competição são comparado entre os atletas de mesma categoria, que realizaram o
+                        mesmo percurso.
+                    </li>
+                    <li>
+                        Nas competições oficiais há um equipamento individual que registra o tempo e a ordem de passagem do atleta nos
+                        pontos de controle.
+                    </li>
                 </ul>
             </li>
             <li>
-                <span class="topic" onclick="toggle('clubes')">Onde eu posso aprender mais sobre Orientação?</span>
+                <span class="topic" onclick="toggle(event, 'clubes')">Que clubes atuam na formação de atletas para a Orientação cearense?</span>
                 <ul class="w3-ul inner-topic" id="clubes" name="clubes">
-                    <li class="clube">COFORT - Clube de Orientação Fortaleza
-                        <p style="margin-left: 30px;">
-                            <a href="http://linktr.ee/COFORT">site</a>
-                            <br>
-                            Instagram <a href="https://instagram.com/cofortce?igshid=NDk5N2NlZjQ=">@cofortce</a>
-                            <br>
-                            contato: Jane Sousa (85)99713-4090 <a
-                                href="mailto:secretariacofort@gmail.com">secretariacofort@gmail.com</a>
-                        </p>
+                    <li class="clube">
+                        COFORT - Clube de Orientação Fortaleza
+                        <br>
+                        <i class="fa fa-globe"></i><a target="_blank"
+                            href="http://linktr.ee/COFORT">linktr.ee/COFORT</a>
+                        <br>
+                        <i class="fa fa-instagram"></i><a target="_blank"
+                            href="http://instagram.com/cofortce">@cofortce</a>
+                        <br>
+                        <i class="fa fa-envelope"></i><a target="_blank"
+                            href="mailto:secretariacofort@gmail.com">secretariacofort@gmail.com</a>
+                        <br>
+                        <i class="fa fa-whatsapp"></i>(85)99713-4090 Jane Sousa
                     </li>
-                    <li class="clube">CORR - Clube de Orientação Rumba na Rota
-                        <p style="margin-left: 30px;">
-                            <a href="http://www.rumbanarota.com">site</a>
-                            <br>
-                            Instagram @rumbanarota
-                            <br>
-                            Facebook: Rumba na Rota
-                        </p>
+                    <li class="clube">
+                        CORR - Clube de Orientação Rumba na Rota
+                        <br>
+                        <i class="fa fa-globe"></i><a target="_blank"
+                            href="http://www.rumbanarota.com">www.rumbanarota.com</a>
+                        <br>
+                        <i class="fa fa-instagram"></i><a target="_blank"
+                            href="http://instagram.com/rumbanarota">@rumbanarota</a>
+                        <br>
+                        <i class="fa fa-facebook"></i><a target="_blank"
+                            href="http://m.facebook.com/100047069718578">Rumba na Rota</a>
                     </li>
-                    <li class="clube">Trilha Norte Clube de Orientação</li>
+                    <li class="clube">
+                        Trilha Norte Clube de Orientação
+                        <br>
+                        <i class="fa fa-instagram"></i><a target="_blank"
+                            href="https://instagram.com/trilhanorteoficial">@trilhanorteoficial</a>
+                        <br>
+                        <i class="fa fa-envelope"></i><a target="_blank"
+                            href="mailto:trilhanorteorienta@gmail.com">trilhanorteorienta@gmail.com</a>
+                        <br>
+                        <i class="fa fa-whatsapp"></i>(85)99626-1007 Paulo Mazulo
+                    </li>
                     <li class="clube">Clube de Orientação COqueiro</li>
+                    <li class="clube">CODL - Clube de Orientação Desporto e Lazer</li>
+                    <li class="clube">Azimute - Clube Azimute de Orientação e Aventura</li>
                 </ul>
             </li>
-            <li><span class="topic" onclick="toggle('custo')"">Qual é o custo para praticar Orientação?</span>
-                <ul class="w3-ul inner-topic" id="custo" name="custo">
-                    <li>A Federação Cearense de Orientação (<a href="http://www.fecori.org.br">FECORI</a>) - regulamenta as competições no Estado, seguindo as
-                        regras da Confederação Brasileira de Orientação (<a href="http://www.cbo.esp.br">CBO</a>).</li>
-                    <li>Os Regulamentos das Competições, o Regimento de Taxas e o Calendário de Eventos podem ser
-                        acessados pelo site <a href="http://www.fecori.org.br">www.fecori.org.br</a>.</li>
-                    <li>Em 2023, uma inscrição em uma prova oficial custa R$ 90,00 para o atleta filiado à CBO. Esta
-                        filiação custa R$ 50,00 uma única vez.</li>
-                    <li>Na primeira, e até três participações, ainda acompanhado por um atleta experiente, o atleta
-                        pré-filiado à CBO paga R$ 30,00. Esta pré-filiação custa R$ 15,00.</li>
-                    <li>Em 2023 teremos 3 competições oficiais em percurso de média/longa distância, e uma competição
-                        com 3 percursos rápidos em um fim de semana.</li>
-                    <li>Os clubes procuram também oferecer oportunidades de cursos de iniciação e percursos treinos ao
-                        longo do ano.</li>
+            <li>
+                <span class="topic" onclick="toggle(event, 'custo')"">Qual é o custo para praticar Orientação?</span>
+                <ul class=" w3-ul inner-topic" id="custo" name="custo">
+                    <li>
+                        A Federação Cearense de Orientação
+                        (<a target="_blank" href="http://www.fecori.org.br">FECORI</a>)
+                        regulamenta as competições no Estado, seguindo as regras da Confederação Brasileira de Orientação
+                        (<a target="_blank" href="http://www.cbo.esp.br">CBO</a>).
+                    </li>
+                    <li>
+                        Os Regulamentos das Competições, o Regimento de Taxas e o Calendário de Eventos podem ser acessados pelo site
+                        <a target="_blank" href="http://www.fecori.org.br">www.fecori.org.br</a>.
+                    </li>
+                    <li>
+                        Em 2023, uma inscrição em uma prova oficial custa R$ 90,00 para o atleta filiado à CBO. Esta filiação custa R$ 50,00
+                        uma única vez.
+                    </li>
+                    <li>
+                        Na primeira, e até três participações, ainda acompanhado por um atleta experiente, o atleta pré-filiado à CBO paga
+                        R$ 30,00. Esta pré-filiação custa R$ 15,00.
+                    </li>
+                    <li>
+                        Em 2023 teremos 3 competições oficiais em percurso de média/longa distância, e uma competição com 3 percursos
+                        rápidos em um fim de semana.
+                    </li>
+                    <li>
+                        Os clubes procuram também oferecer oportunidades de cursos de iniciação e percursos treinos ao longo do ano.
+                    </li>
                 </ul>
             </li>
         </ul>
     </div>
 </body>
-
 </html>
