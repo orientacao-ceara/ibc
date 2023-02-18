@@ -3,54 +3,99 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-    body {
-        background-color: #87bdd8;
-        color: black;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-    }
+body {
+    background-color: #87bdd8;
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 
-    .titulo {
-        font-size: 20px;
-        font-weight: bold;
-    }
+.titulo {
+    font-size: 20px;
+    font-weight: bold;
+}
 
-    .w3-ul {
-        background-color: #87bdd8;
-        padding: 8px 0px;
+.w3-ul {
+    background-color: #87bdd8;
+    padding: 8px 0px;
 
-    }
+}
 
-    .w3-ul li {
-        padding-left: 0px;
-        border-bottom: 2px solid #b7d7e8;
-    }
+.w3-ul li {
+    padding-left: 0px;
+    border-bottom: 2px solid #b7d7e8;
+}
 
-    .inner-topic li {
-        padding-left: 30px;
-        background-color: #b7d7e8;
-        border-bottom: 2px solid #87bdd8;
-    }
+.inner-topic li {
+    padding-left: 30px;
+    background-color: #b7d7e8;
+    border-bottom: 2px solid #87bdd8;
+}
 
-    i {
-        width: 30px;
-        color: #3B5998;
-    }
+i {
+    width: 30px;
+    color: #3B5998;
+}
 
-    a:hover {
-        color: #3B5998;
-    }
+a:hover {
+    color: #3B5998;
+}
 
-    a {
-        color: #198dc7;
-        text-decoration: none;
-    }
+a {
+    color: #198dc7;
+    text-decoration: none;
+}
 
-    .fa {
-        padding: 0px;
-        font-size: 15px;
-        text-align: center;
-        text-decoration: none;
-    }
+.fa {
+    padding: 0px;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+}
+.container {
+    background-color: rgba(100, 201, 154);
+    padding: 20px;
+    margin: 50px auto;
+    border: 2px solid white;
+    display: grid;
+    width: 70%;
+}
+
+.splash {
+    cursor: pointer;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    height: 100%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    background-color: #87bdd8;
+    transition: all ease-in-out 1200ms;
+}
+
+.splash-image {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    height: 100vh;
+    width: calc(1vh * 100 * 202 / 363);
+
+    transform: translate(-50%, -50%);
+}
+
+.hidden {
+    transition: 0.5s;
+    display: none;
+}
+
+.splash-header {
+    height: 90%;
+    color: white;
+    font-family: consolas;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 </style>
 <script>
     function toggle(elem, topic) {
@@ -77,9 +122,29 @@
             elem.currentTarget.style.fontWeight = '900';
         }
     }
+
+    var splashScreen;
+    function onclickSplash() {
+        splashScreen.style.opacity = 0;
+        setTimeout(() => {
+            splashScreen.classList.add('hidden')
+        }, 1200)
+    }
+    function onload() {
+        splashScreen = document.querySelector('.splash');
+
+        splashScreen.addEventListener('click', onclickSplash);
+        setTimeout(() => {
+            onclickSplash();
+        }, 1500)
+        toggle(null, 'clubes')
+    }
 </script>
 
-<body onload="toggle(null, 'clubes')">
+<body onload="onload()">
+    <div class="splash">
+        <img class="splash-image" src="img/ibc-abertura.png">
+    </div>
     <div class="w3-container">
         <span class="titulo">Pista de Orientação - IBC</span>
         <ul class="w3-ul">
@@ -119,10 +184,10 @@
                     </li>
                     <li>
                         Se tiver acesso a uma impressora, basta baixar o <a target="_blank"
-                            href="doc/mapa-ibc.pdf">mapa</a> e imprimir.
+                            href="pista-orientacao-ibc-cmyk.pdf">mapa</a> e imprimir.
                     </li>
                     <li>
-                        A opção de baixar o <a target="_blank" href="doc/mapa-ibc.pdf">mapa</a> e usá-lo em seu celular
+                        A opção de baixar o <a target="_blank" href="doc/pista-orientacao-ibc-rgb.pdf">mapa</a> e usá-lo em seu celular
                         é possível, mas você
                         perde a experiência em relação a noção de distância e o alinhamento do mapa em relação ao
                         terreno, que são técnicas
